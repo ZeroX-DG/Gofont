@@ -10,8 +10,7 @@ type loggerFunc func(LogData)
 var loggers []loggerFunc
 
 // Log log information after downloading the fonts
-func Log(fontNames []string) {
-	data := LogData{FontNames: fontNames}
+func Log(data LogData) {
 	for _, logger := range loggers {
 		logger(data)
 	}

@@ -36,6 +36,12 @@ func main() {
 		}
 	}
 
+	// register loggers
 	logger.Register(downloadedfontlogger.Log)
-	logger.Log(fontNames)
+
+	// log data
+	data := logger.LogData{
+		FontNames: fontNames,
+	}
+	logger.Log(data)
 }
