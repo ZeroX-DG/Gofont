@@ -4,11 +4,11 @@ import (
 	"regexp"
 )
 
-// Font The structure for extracted font
-type Font struct {
-	name   string
-	remote string
-	local  string
+// Extract extract font urls and names
+func Extract(css string) ([]string, []string) {
+	remoteURLs := ExtractRemoteURLs(css)
+	fontNames := ExtractNames(css)
+	return remoteURLs, fontNames
 }
 
 // ExtractRemoteURLs Analyze the css and returns the remote urls
