@@ -1,4 +1,4 @@
-package gofont
+package test
 
 import (
 	"extractfont"
