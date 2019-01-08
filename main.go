@@ -1,9 +1,11 @@
 package main
 
 import (
+	"extractfont"
 	"fmt"
-	"io/ioutil"
-	"net/http"
+	"gofont/loggers/downloadedfontlogger"
+	"logger"
+	"path"
 )
 
 func main() {
@@ -13,20 +15,27 @@ func main() {
 		return
 	}
 
-	response, err := http.Get(option.fontURL)
+	// fetch css from google font api
+	html, err := FetchHTML(option.fontURL)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	defer response.Body.Close()
+	// extract font urls and names from google font api
+	fontURLs, fontNames := extractfont.Extract(html)
 
-	html, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println(err)
-		return
+	// download all fonts to destination
+	for _, fontURL := range fontURLs {
+		fileName := path.Base(fontURL)
+		fullpath := path.Join(option.destination, fileName)
+		err := DownloadFile(fontURL, fullpath)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 
-	fmt.Printf("%s\n", html)
-
+	logger.Register(downloadedfontlogger.Log)
+	logger.Log(fontNames)
 }
