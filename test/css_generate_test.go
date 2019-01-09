@@ -34,3 +34,38 @@ func TestGenerateCSS(t *testing.T) {
 		return
 	}
 }
+
+func TestGenerateRelativePath(t *testing.T) {
+	src := "/home/path/to/css"
+	dest := "/home/path/to/fonts/font.ttf"
+
+	expected := "../fonts/font.ttf"
+	actual := cssgenerate.GetRelativePath(src, dest)
+
+	if actual != expected {
+		t.Error("Expected relative path to be ", "expected", ", got ", actual)
+		return
+	}
+
+	src = "/home/path/to/css"
+	dest = "/home/path/to/css/font.ttf"
+
+	expected = "font.ttf"
+	actual = cssgenerate.GetRelativePath(src, dest)
+
+	if actual != expected {
+		t.Error("Expected relative path to be ", "expected", ", got ", actual)
+		return
+	}
+
+	src = "/home/path/to/css"
+	dest = "/home/path/to/css/fonts/font.ttf"
+
+	expected = "fonts/font.ttf"
+	actual = cssgenerate.GetRelativePath(src, dest)
+
+	if actual != expected {
+		t.Error("Expected relative path to be ", "expected", ", got ", actual)
+		return
+	}
+}
