@@ -20,7 +20,7 @@ https://fonts.googleapis.com/css?family=Charm|Dancing+Script
 
 I'm still trying out Go so maybe I'll add some more features such as:
 
-- [ ] Generate a CSS file pointing to the location of the downloaded font
+- [x] Generate a CSS file pointing to the location of the downloaded font
 - [ ] Make logger more colorful by printing the details with color
 - [x] Cry a lot because I don't understand how Go `import` works
 - [ ] Search for fonts on google fonts
