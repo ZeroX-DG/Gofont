@@ -10,6 +10,7 @@ import (
 func GenerateCSS(css string, fontRemoteURLs []string, fontLocalPaths []string, destinationCSSFile string) (string, error) {
 	result := css
 	absoluteCSSFile, err := abs(destinationCSSFile)
+	absoluteCSSFileDir := path.Dir(absoluteCSSFile)
 	if err != nil {
 		return "", err
 	}
@@ -18,7 +19,7 @@ func GenerateCSS(css string, fontRemoteURLs []string, fontLocalPaths []string, d
 		if err != nil {
 			return "", err
 		}
-		relativeLocalPath := GetRelativePath(absoluteCSSFile, absoluteLocalPath)
+		relativeLocalPath := GetRelativePath(absoluteCSSFileDir, absoluteLocalPath)
 		result = strings.Replace(result, url, relativeLocalPath, -1)
 	}
 	return result, nil
