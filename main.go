@@ -5,6 +5,7 @@ import (
 	"extractfont"
 	"fmt"
 	"gofont/loggers/downloadedfontlogger"
+	"gofont/loggers/generatecsslogger"
 	"io/ioutil"
 	"logger"
 	"path"
@@ -55,10 +56,12 @@ func main() {
 
 	// register loggers
 	logger.Register(downloadedfontlogger.Log)
+	logger.Register(generatecsslogger.Log)
 
 	// log data
 	data := logger.LogData{
 		FontNames: fontNames,
+		CSSFile:   option.cssFile,
 	}
 	logger.Log(data)
 }

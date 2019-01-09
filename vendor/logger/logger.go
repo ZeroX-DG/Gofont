@@ -3,6 +3,7 @@ package logger
 // LogData data received in each logger
 type LogData struct {
 	FontNames []string
+	CSSFile   string
 }
 
 type loggerFunc func(LogData)
