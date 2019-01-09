@@ -18,7 +18,8 @@ func TestGenerateCSS(t *testing.T) {
 		t.Error(err)
 	}
 	remoteURLs := []string{
-		"https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjxAwXjeu.woff2", "https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2",
+		"https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjxAwXjeu.woff2",
+		"https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXg.woff2",
 	}
 	localPaths := []string{
 		"/home/fonts/S6uyw4BMUTPHjxAwXjeu.woff2",
